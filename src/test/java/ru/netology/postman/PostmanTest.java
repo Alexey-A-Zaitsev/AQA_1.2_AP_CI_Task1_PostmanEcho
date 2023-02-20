@@ -7,16 +7,30 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class PostmanTest {
     @Test
-    public void shouldSendPostRequest() {
+    public void shouldSendPostRequestInEng() {
         given()
                 .baseUri("https://postman-echo.com")
                 .contentType("text/plain; charset=UTF-8")
-                .body("some data")
+                .body("some value")
                 .when()
                 .post("/post")
                 .then()
                 .statusCode(200)
-                .body("data", equalTo("some data"))
+                .body("data", equalTo("some value"))
+        ;
+    }
+
+    @Test
+    public void shouldSendPostRequestInRus() {
+        given()
+                .baseUri("https://postman-echo.com")
+                .contentType("text/plain; charset=UTF-8")
+                .body("Запрос")
+                .when()
+                .post("/post")
+                .then()
+                .statusCode(200)
+                .body("data", equalTo("Запрос"))
         ;
     }
 }
